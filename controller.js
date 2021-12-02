@@ -33,7 +33,7 @@ class Controller{
     }
 
     //update a todo
-    async createToDo(id){
+    async updateToDo(id){
         return new Promise((resolve, reject)=>{
             let todo=data.find(data=>data.id===parseInt(id))
             if(!todo){
@@ -54,7 +54,7 @@ class Controller{
                 reject(`Todo with id ${id} not found!`)
             }
 
-            resolve('ToDo deleted successfully!')
+            resolve(`ToDo with id ${id} deleted successfully!`)
         })
     }
 
