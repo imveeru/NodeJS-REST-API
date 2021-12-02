@@ -20,4 +20,16 @@ class Controller{
         })
     }
 
+    //create a todo
+    async createToDo(todo){
+        return new Promise((resolve, reject)=>{
+            let newTodo={
+                id:Math.floor(data.length+Math.random()*100),
+                ...todo,
+            }
+
+            resolve(newTodo)
+        })
+    }
+
 }
