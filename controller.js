@@ -32,4 +32,18 @@ class Controller{
         })
     }
 
+    //update a todo
+    async createToDo(id){
+        return new Promise((resolve, reject)=>{
+            let todo=data.find(data=>data.id===parseInt(id))
+            if(!todo){
+                reject(`Todo with id ${id} not found`)
+            }
+            
+            todo["completed"]=true
+            
+            resolve(todo)
+        })
+    }
+
 }
