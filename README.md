@@ -1,5 +1,5 @@
 ﻿# NodeJS-REST-API
- A simple Vannila NodeJS REST API with basic CRUD functions.
+ A simple pure NodeJS REST API with basic CRUD functions.
  
 ## How to use?
 - Clone the project
