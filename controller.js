@@ -8,7 +8,7 @@ class Controller{
     }
 
     //get a single todo
-    async getToDos(id){
+    async getToDo(id){
         return new Promise((resolve, reject)=>{
             let todo=data.find(data=>data.id===parseInt(id))
             if(todo){

@@ -6,7 +6,7 @@ const { getReqData } = require("./utils");
 
 const server=http.createServer(async(req,res) => {
     if(req.url==='/api/todos'&&req.method=='GET'){
-        const todos=await Todo().getToDos()
+        const todos=await new Todo().getToDos()
         res.writeHead(200, { "Content-Type": "application/json" })
         res.end(JSON.stringify(todos))
     }
