@@ -22,7 +22,7 @@ const server=http.createServer(async(req,res) => {
             res.end(JSON.stringify(todo))
         }
         catch(err){
-            res.writeHead(400, { "Content-Type": "application/json" })
+            res.writeHead(404, { "Content-Type": "application/json" })
             res.end(JSON.stringify({message:err}))
         }
     }
@@ -36,14 +36,28 @@ const server=http.createServer(async(req,res) => {
             res.end(JSON.stringify(todo))
         }
         catch(err){
-            res.writeHead(400, { "Content-Type": "application/json" })
+            res.writeHead(404, { "Content-Type": "application/json" })
+            res.end(JSON.stringify({message:err}))
+        }
+    }
+
+    // api/todos/:id update specific todo with id
+    else if(req.url.match(/\/api\/todos\/([0-9]+)/)&&req.method=='PATCH'){
+        try{
+            const id=req.url.split('/')[3]
+            const updated_todo= await new Todo().updateToDo(id)
+            res.writeHead(200, { "Content-Type": "application/json" })
+            res.end(JSON.stringify(updated_todo))
+        }
+        catch(err){
+            res.writeHead(404, { "Content-Type": "application/json" })
             res.end(JSON.stringify({message:err}))
         }
     }
 
     //handle unexpected requests
     else{
-        res.writeHead(200,{'Content-Type':'application/json'})
+        res.writeHead(404,{'Content-Type':'application/json'})
         res.end(JSON.stringify({ message: "Route not found" }))
     }
 })
