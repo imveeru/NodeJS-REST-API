@@ -56,7 +56,7 @@ const server=http.createServer(async(req,res) => {
     }
 
     // api/todos/ -> to add new todo
-    if(req.url==='/api/todos'&&req.method=='POST'){
+    else if(req.url==='/api/todos'&&req.method=='POST'){
 
         let todoData=await getReqData(req)
         const todo=await new Todo().createToDo(JSON.parse(todoData))
