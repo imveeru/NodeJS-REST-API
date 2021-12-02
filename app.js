@@ -27,7 +27,7 @@ const server=http.createServer(async(req,res) => {
         }
     }
 
-    // api/todos/:id delete specific todo with id
+    // api/todos/:id -> delete specific todo with id
     else if(req.url.match(/\/api\/todos\/([0-9]+)/)&&req.method=='DELETE'){
         try{
             const id=req.url.split('/')[3]
@@ -41,7 +41,7 @@ const server=http.createServer(async(req,res) => {
         }
     }
 
-    // api/todos/:id update specific todo with id
+    // api/todos/:id -> update specific todo with id
     else if(req.url.match(/\/api\/todos\/([0-9]+)/)&&req.method=='PATCH'){
         try{
             const id=req.url.split('/')[3]
@@ -53,6 +53,15 @@ const server=http.createServer(async(req,res) => {
             res.writeHead(404, { "Content-Type": "application/json" })
             res.end(JSON.stringify({message:err}))
         }
+    }
+
+    // api/todos/ -> to add new todo
+    if(req.url==='/api/todos'&&req.method=='POST'){
+
+        let todoData=await getReqData(req)
+        const todo=await new Todo().createToDo(JSON.parse(todoData))
+        res.writeHead(200, { "Content-Type": "application/json" })
+        res.end(JSON.stringify(todo))
     }
 
     //handle unexpected requests
